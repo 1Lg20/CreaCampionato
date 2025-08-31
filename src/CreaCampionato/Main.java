@@ -19,13 +19,13 @@ public class Main {
 		
 		System.out.println("\n<---------------------------------->\n");
 		
-		System.out.println("Nome campionato:"+Dati[0]);
-		
-		System.out.println("Numero squadre:"+Dati[1]);
-		
 		for (int i = 0; i < Squadre.size(); i++) {
 			System.out.println(Squadre.get(i));
 		}
+		
+		Campionato Campionato1=new Campionato(Dati[0], Integer.parseInt(Dati[1]) , Squadre);
+		System.out.println(Campionato1.toString());
+	
 	}
 	
 	/*
