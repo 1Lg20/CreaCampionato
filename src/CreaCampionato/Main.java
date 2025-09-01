@@ -12,16 +12,9 @@ public class Main {
 		//Array per i dati aggiuntivi
 		String[] Dati= new String[2];
 		
-		System.out.println("Crea il tuo campionato");
-		System.out.println("\n<---------------------------------->\n");
+		System.out.println("Crea il tuo campionato\n");
 		
 		Richiedi(Squadre, Dati);
-		
-		System.out.println("\n<---------------------------------->\n");
-		
-		for (int i = 0; i < Squadre.size(); i++) {
-			System.out.println(Squadre.get(i));
-		}
 		
 		Campionato Campionato1=new Campionato(Dati[0], Integer.parseInt(Dati[1]) , Squadre);
 		System.out.println(Campionato1.toString());
@@ -45,7 +38,7 @@ public class Main {
 		System.out.println("Inserire il nome del campionato");
 		dati[0]=myScanner.nextLine();
 		while((NumeroSquadre % 2 != 0) || NumeroSquadre < 5) {
-			System.out.println("Inserire il numero di squadre");
+			System.out.println("Inserire il numero di squadre(almeno 6 e deve essere un numero pari");
 			NumeroSquadre= Integer.parseInt(myScanner.nextLine());
 		}
 		dati[1]= String.valueOf(NumeroSquadre);

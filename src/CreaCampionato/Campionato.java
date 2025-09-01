@@ -6,15 +6,12 @@ public class Campionato {
 	
 	private static String Nome;
 	private static int NumeroSquadre;
-	private ArrayList<Squadra> Squadre= new ArrayList<Squadra>();
+	private static ArrayList<Squadra> Squadre= new ArrayList<Squadra>();
 
 	public Campionato(String NomeCampionato, int NSquadre, ArrayList<String> SquadreString) {
 		setNome(NomeCampionato);
 		setNumeroSquadre(NSquadre);
-	}
-
-	public static void main(String[] args) {
-
+		Addsquadre(SquadreString);
 	}
 	
 	@Override
@@ -23,7 +20,12 @@ public class Campionato {
 	 * */
 	public String toString() {
 		// TODO Auto-generated method stub
-		return "\nIl campionato "+getNome()+" è composto da "+getNumeroSquadre()+" squadre\n";
+		String DaStampare="\n<----------------------------------------------------------------->\nIl campionato "+getNome()+" è composto da "+getNumeroSquadre()+" squadre\nLe squadre sono:\n";
+		for (int i = 0; i < Squadre.size(); i++) {
+			DaStampare=DaStampare+">"+Squadre.get(i).getNome()+"\n";
+		}
+		DaStampare=DaStampare+"<----------------------------------------------------------------->\n";
+		return DaStampare;
 	}
 	
 	/*
@@ -34,16 +36,24 @@ public class Campionato {
 		return NumeroSquadre;
 	}
 	
-	public static String getNome() {
+	public String getNome() {
 		return Nome;
 	}
 
-	public static void setNumeroSquadre(int numeroSquadre) {
+	public void setNumeroSquadre(int numeroSquadre) {
 		NumeroSquadre = numeroSquadre;
 	}
 
-	public static void setNome(String nome) {
+	public void setNome(String nome) {
 		Nome = nome;
+	}
+	
+	public void Addsquadre(ArrayList<String> NomSquadre) {
+		
+		for (int i = 0; i < NomSquadre.size(); i++) {
+			Squadre.add(new Squadra(NomSquadre.get(i)));
+		}
+		
 	}
 	
 	
