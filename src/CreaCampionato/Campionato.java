@@ -20,11 +20,10 @@ public class Campionato {
 	 * */
 	public String toString() {
 		// TODO Auto-generated method stub
-		String DaStampare="\n<----------------------------------------------------------------->\nIl campionato "+getNome()+" è composto da "+getNumeroSquadre()+" squadre\nLe squadre sono:\n";
+		String DaStampare="\n\u001B[33m\033[1;1mCampionato "+getNome()+"\u001B[0m \033[0;0m \nComposizione:"+getNumeroSquadre()+" squadre\nLe squadre sono:";
 		for (int i = 0; i < Squadre.size(); i++) {
-			DaStampare=DaStampare+">"+Squadre.get(i).getNome()+"\n";
+			DaStampare=DaStampare+Squadre.get(i).toString()+"\n";
 		}
-		DaStampare=DaStampare+"<----------------------------------------------------------------->\n";
 		return DaStampare;
 	}
 	
@@ -48,12 +47,25 @@ public class Campionato {
 		this.Nome = nome;
 	}
 	
+	/*
+	 * Riceve l'arraylist con i nomi delle squadre
+	 * Utilizza i nomi delle squadre per creare un Arraylist di classi squadra
+	 * Carica i rivali delle varia squadre
+	 * */
 	public void Addsquadre(ArrayList<String> NomSquadre) {
 		
 		for (int i = 0; i < NomSquadre.size(); i++) {
 			this.Squadre.add(new Squadra(NomSquadre.get(i)));
 		}
 		
+		if(this.Squadre.size()!=this.getNumeroSquadre()) {
+			System.err.println("Errore nella creazione delle squadre, programma terminato");
+			System.exit(-1);
+		}
+		
+		for (int i = 0; i < this.Squadre.size(); i++) {
+			this.Squadre.get(i).CreaRivali(Squadre);
+		}
 	}
 	
 	
