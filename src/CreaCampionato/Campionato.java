@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class Campionato {
 	
-	private static String Nome;
-	private static int NumeroSquadre;
-	private static ArrayList<Squadra> Squadre= new ArrayList<Squadra>();
+	private  String Nome;
+	private  int NumeroSquadre;
+	private  ArrayList<Squadra> Squadre= new ArrayList<Squadra>();
 
 	public Campionato(String NomeCampionato, int NSquadre, ArrayList<String> SquadreString) {
 		setNome(NomeCampionato);
@@ -33,25 +33,25 @@ public class Campionato {
 	 * */
 	
 	public int getNumeroSquadre() {
-		return NumeroSquadre;
+		return this.NumeroSquadre;
 	}
 	
 	public String getNome() {
-		return Nome;
+		return this.Nome;
 	}
 
 	public void setNumeroSquadre(int numeroSquadre) {
-		NumeroSquadre = numeroSquadre;
+		this.NumeroSquadre = numeroSquadre;
 	}
 
 	public void setNome(String nome) {
-		Nome = nome;
+		this.Nome = nome;
 	}
 	
 	public void Addsquadre(ArrayList<String> NomSquadre) {
 		
 		for (int i = 0; i < NomSquadre.size(); i++) {
-			Squadre.add(new Squadra(NomSquadre.get(i)));
+			this.Squadre.add(new Squadra(NomSquadre.get(i)));
 		}
 		
 	}
