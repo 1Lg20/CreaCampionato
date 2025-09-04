@@ -1,12 +1,14 @@
 package CreaCampionato;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Campionato {
 	
-	private  String Nome;
-	private  int NumeroSquadre;
-	private  ArrayList<Squadra> Squadre= new ArrayList<Squadra>();
+	private String Nome;
+	private int NumeroSquadre;
+	private ArrayList<Squadra> Squadre= new ArrayList<Squadra>();
+	private ArrayList<ArrayList<String>> Giornate= new ArrayList<ArrayList<String>>(); 
 
 	public Campionato(String NomeCampionato, int NSquadre, ArrayList<String> SquadreString) {
 		setNome(NomeCampionato);
@@ -66,6 +68,56 @@ public class Campionato {
 		for (int i = 0; i < this.Squadre.size(); i++) {
 			this.Squadre.get(i).CreaRivali(Squadre);
 		}
+	}
+	
+	/*
+	 * ,etodo che crea le giornate del campionato
+	 * */
+	public void CreaGiornate() {
+		
+		ArrayList<Squadra> SquadreCopy= new ArrayList<Squadra>();
+		Squadra sq1;
+		Squadra sq2;
+		Random rand = new Random(); 
+		int SquadraEstratta; 
+		String Abbinamento="";
+		
+		
+		
+		for (int n = 1; n < this.Squadre.size(); n++) {
+			
+			//Creo una copia dell'array iniziale
+			for (int i = 0; i < this.Squadre.size(); i++) {
+				SquadreCopy.add(this.Squadre.get(i));
+			}
+			
+			System.out.println("Giornata"+n);
+			//Creo le partite della giornata
+			while(SquadreCopy.size() > 0) {
+				SquadraEstratta= rand.nextInt(SquadreCopy.size());
+				sq1=SquadreCopy.get(SquadraEstratta);
+				SquadreCopy.remove(SquadraEstratta);
+				sq2=sq1.EstraiRivale(SquadreCopy); 
+				for (int i = 0; i < SquadreCopy.size(); i++) {
+					if(SquadreCopy.get(i) == sq2) {
+						SquadraEstratta=i;
+					}
+				}
+				SquadreCopy.remove(SquadraEstratta);
+				sq1.RimuoviRivali(sq2);
+				sq2.RimuoviRivali(sq1);
+				Abbinamento=sq1.getNome()+" - "+sq2.getNome();
+				System.out.println(Abbinamento);
+			}
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
 	}
 	
 	

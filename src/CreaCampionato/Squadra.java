@@ -1,6 +1,7 @@
 package CreaCampionato;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Squadra {
 
@@ -25,7 +26,7 @@ public class Squadra {
 		for (int i = 0; i < this.Rivali.size(); i++) {
 			Stampare=Stampare+this.Rivali.get(i).getNome()+"|";
 		}
-		Stampare=Stampare+"\n<----------------------------------------------------------------->\n";
+		Stampare=Stampare+"\n<----------------------------------------------------------------->";
 		
 		return Stampare;
 	}
@@ -52,6 +53,37 @@ public class Squadra {
 			}
 		}
 	}
-
-
+	
+	/*
+	 * Ricave una classe squadra
+	 * ricerca la classe passata e la rimuove dall'ArrayList rivali
+	 * */
+	public void RimuoviRivali(Squadra squadra) {
+		int rimuovi=-1;
+		
+		for (int i = 0; i < this.Rivali.size(); i++) {
+			if(this.Rivali.get(i) == squadra) {
+				rimuovi=i;
+			}
+		}
+		if(rimuovi==-1) {
+			System.out.println("Errore nella rimozione del rivale");
+		}else {
+			this.Rivali.remove(rimuovi);
+		}
+	}
+	
+	/*
+	 * Riceve un ArrayList di squadre
+	 * Estrae il proprio rivale, estraendolo a sorte dall' ArrayList dei rivali, verificando che sia contenuto tra le squadre nell'arrayList passatogli
+	 * */
+	public Squadra EstraiRivale(ArrayList<Squadra> Disponibili) {
+		Random rand = new Random(); 
+		Squadra Rivale = null;
+		while(!Disponibili.contains(Rivale)) {
+			Rivale=this.Rivali.get(rand.nextInt(this.Rivali.size()));
+		}
+		
+		return Rivale;
+	}
 }

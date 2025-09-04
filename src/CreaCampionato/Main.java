@@ -18,7 +18,10 @@ public class Main {
 		
 		Campionato Campionato1=new Campionato(Dati[0], Integer.parseInt(Dati[1]) , Squadre);
 		System.out.println(Campionato1.toString());
-	
+		
+		Campionato1.CreaGiornate();
+		
+		System.out.println(Campionato1.toString());
 	}
 	
 	/*
